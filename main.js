@@ -32,7 +32,7 @@ function submitForm(e){
   saveMessage(name, email, message);
 
   // Show alert
-  document.querySelector('.alert').style.display = 'block';
+  alert('thank you for contacting me');
 
   // Hide alert after 3 seconds
   setTimeout(function(){
