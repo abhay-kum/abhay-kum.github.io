@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+var greeting=["hii","Hii","Hello","hey","Hey","hello"]
+var greeting_response=["how can i help you ?","what can I do for you?","what do you want to know?"]
+
+var question=["how is weather today","How is the weather","how is the weather in Delhi ","how is the weather in mumbai","Is it going to rain today","it is sunshine"]
+
+
+var q_answer=["i think today, it is good for roaming around the city","It seems it is cloudy today","Be careful may raining today","It's cloudy","Its clear sky","Its hot ","Bitterly cold in ","some smoke in ","hot in","no! it is not rainy today","it may be  take a umberella with you","it is a clear sky no need to worry about"," yeah it will be heavily raining today","yes it is sunshine and clear sky","no may be storm will come be aware","chill out no worry go and enjoy your day"]
+
+
+var some_other=["okay","fine","that's great","wow that's good to hear","okay, no problem","thank you","you are good","good to talk with you"]
+var some_other_response=["it's my pleasure having a great time with you","that my pleasure to help you","thank you and wish you the same","thats cool","you are amazing"]
+
+var bye=["okay bye","bye","good bye","talk to you later","talk to u later","nice to meet you"]
+var bye_response=["okay bye","Bye,take care","Bye, have a great time with you","okay bye, no problem","okay bye, meet u again"]
+
+
+
+function appendText() {
+     
+     var i;
+     var inp=document.getElementById("data").value;
+     var q=new String(inp);
+     var ans="sorry";
+     var txt1 = "<p>>>>>"+q+"</p>";  
+     
+     // if q in greeting
+     for (i=0;i<greeting.length;i++)
+     {
+     if(q==greeting[i]){
+     //ans="hello";
+     var ans = greeting_response[Math.floor(Math.random() * greeting_response.length)];
+      var txt1 = "<p>>>>>"+q+"</p>";  
+     var txt2 = "<p>"+ans+"</p>";
+    
+    }
+    }
+    
+    //if q in question
+     var n=0;
+    n = q.search(" in ");
+     for (i=0;i<question.length;i++)
+     {
+     if(q==question[i]){
+     //ans="hello";
+     var ans = q_answer[Math.floor(Math.random() * q_answer.length)];
+     var txt1 = "<p>>>>>"+q+"</p>"; 
+     var txt2 = "<p>"+ans+"</p>";
+    
+    }
+   
+    else if(n>0)
+    {
+     ans="in";
+     //var ans = q_answer[Math.floor(Math.random() * q_answer.length)];
+     var txt1 = "<p>>>>>"+q+"</p>"; 
+     var txt2 = "<p>"+ans+"</p>";
+    
+    }
+    
+    
+    }
+    
+    // if some other response 
+     for (i=0;i<some_other.length;i++)
+     {
+     if(q==some_other[i]){
+     //ans="hello";
+     var ans = some_other_response[Math.floor(Math.random() * some_other_response.length)];
+       var txt1 = "<p>>>>>"+q+"</p>";
+     var txt2 = "<p>"+ans+"</p>";
+    
+    }
+    }
+    
+    //for bye response
+    
+        for (i=0;i<bye.length;i++)
+     {
+     if(q==bye[i]){
+     //ans="hello";
+     var ans =bye_response[Math.floor(Math.random() * bye_response.length)];
+       var txt1 = "<p>>>>>"+q+"</p>";
+     var txt2 = "<p>"+ans+"</p>";
+    
+    }
+    }
+    
+    
+    $("body").append(txt1,txt2); 
+    
+    
+    // Append new elements
+}
+</script>
+</head>
+<body>
+<div id="chat" class="chat">
+<p>This is a weather chat bot you can ask me question about weather</p>
+<ol>
+<li>Greeting:>> hii,Hello</li>
+<li>Weather:>> how is weather today,Is it going to rain today </li>
+<li>Other Question:>> okay,you are good,good to talk with you</li>
+<li>Bye:>>okay bye,bye,good bye,talk to you later,talk to u later,nice to meet you</li>
+
+</ol>
+</div>
+
+<button onclick="appendText()">send your query</button>
+
+<input type="text" id="data">
+
+
+</body>
+</html>
