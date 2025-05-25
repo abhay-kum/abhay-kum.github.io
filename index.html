@@ -8,13 +8,132 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  background: #fdfdfd;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+header {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+header .handwritten {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.8rem;
+  margin: 0;
+}
+
+.role {
+  margin-top: 0.5rem;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+nav {
+  margin-top: 1.5rem;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+section {
+  padding: 2.5rem 1rem;
+}
+
+h2.handwritten {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #0077cc;
+}
+
+.job h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.job span {
+  font-weight: normal;
+  color: #0077cc;
+}
+
+.job p {
+  margin: 0.25rem 0 1rem;
+}
+
+ul {
+  padding-left: 1.25rem;
+  margin-top: 0;
+}
+
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.contact-grid p {
+  flex: 1 1 300px;
+  margin: 0.5rem 0;
+}
+
+a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    margin: 0.5rem;
+    display: inline-block;
+  }
+
+  .handwritten {
+    font-size: 2rem;
+  }
+
+  .role {
+    font-size: 1rem;
+  }
+}
+</style>
 </head>
 <body>
   <header>
     <div class="container">
       <h1 class="handwritten">Abhay Kumar</h1>
-      <p class="role">Data Engineer with 6+ Years of Experience</p>
+      <p class="role">Senior Data Engineer with 6+ Years of Experience</p>
       <nav>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
@@ -24,67 +143,70 @@
     </div>
   </header>
 
-  <section id="about">
-    <div class="container">
-      <h2 class="handwritten">About Me</h2>
-      <p>
-        I'm a Data Engineer with 6 years of experience in fintech and e-commerce.
-        I design scalable data pipelines, handle both batch and streaming data,
-        and integrate data into lakes and warehouses for analytics, BI, and ML.
-      </p>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="container">
-      <h2 class="handwritten">Experience</h2>
-
-      <div class="job">
-        <h3>IDFC FIRST Bank — <span>Data Engineer-2</span></h3>
-        <p><em>Mar 2022 – Present</em></p>
+  <main>
+    <section id="about">
+      <div class="container">
+        <h2 class="handwritten">About Me</h2>
         <p>
-          Processed data using Apache NiFi, PySpark, Hive, and stored in multi-layered Cloudera-based data lakes (staging → refined → raw). Automated ETL jobs and reporting with Airflow, Bash, and Jenkins.
+          I'm a Data Engineer with 6 years of experience in fintech and e-commerce.
+          I design scalable data pipelines, handle batch and streaming data, and integrate data into lakes and warehouses for analytics, BI, and ML.
         </p>
       </div>
+    </section>
 
-      <div class="job">
-        <h3>TextMercato — <span>Data Engineer</span></h3>
-        <p><em>Nov 2020 – Feb 2022</em></p>
-        <p>
-          Extracted and transformed data from PDFs, websites, and images using OCR, paraphrasing models, and FastAPI; created product catalogs for e-commerce.
-        </p>
+    <section id="experience">
+      <div class="container">
+        <h2 class="handwritten">Experience</h2>
+
+        <div class="job">
+          <h3>IDFC FIRST Bank — <span>Data Engineer-2</span></h3>
+          <p><em>Mar 2022 – Present</em></p>
+          <p>
+            Processed data using Apache NiFi, PySpark, Hive, and stored in multi-layered Cloudera-based data lakes (staging → refined → raw). Automated ETL jobs and reporting with Airflow, Bash, and Jenkins.
+          </p>
+        </div>
+
+        <div class="job">
+          <h3>TextMercato — <span>Data Engineer</span></h3>
+          <p><em>Nov 2020 – Feb 2022</em></p>
+          <p>
+            Extracted and transformed data from PDFs, websites, and images using OCR, paraphrasing models, and FastAPI; created product catalogs for e-commerce.
+          </p>
+        </div>
+
+        <div class="job">
+          <h3>Greendeck — <span>Data Engineer</span></h3>
+          <p><em>Mar 2019 – Oct 2020</em></p>
+          <p>
+            Developed scraping and analytics pipelines for competitor price monitoring using FastAPI, Docker, and MongoDB.
+          </p>
+        </div>
       </div>
+    </section>
 
-      <div class="job">
-        <h3>Greendeck — <span>Data Engineer</span></h3>
-        <p><em>Mar 2019 – Oct 2020</em></p>
-        <p>
-          Developed scraping and analytics pipelines for competitor price monitoring using FastAPI, Docker, and MongoDB.
-        </p>
+    <section id="projects">
+      <div class="container">
+        <h2 class="handwritten">Projects</h2>
+        <ul>
+          <li>💡 DBT + Snowflake pipeline with Dagster for managing warehouse transformations</li>
+          <li>🔔 Price monitoring tool for Flipkart/Amazon with Telegram alerts</li>
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="projects">
-    <div class="container">
-      <h2 class="handwritten">Projects</h2>
-      <ul>
-        <li>💡 DBT + Snowflake pipeline with Dagster for managing warehouse transformations</li>
-        <li>🔔 Price monitoring tool for Flipkart/Amazon with Telegram alerts</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <h2 class="handwritten">Contact</h2>
-      <p><i class="fa-solid fa-envelope"></i> kumarabhay.de@gmail.com</p>
-      <p><i class="fa-solid fa-phone"></i> +91 70197 51217</p>
-      <p><i class="fa-brands fa-github"></i> <a href="https://github.com/abhay-kum" target="_blank">github.com/abhay-kum</a></p>
-      <p><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/in/abhay-kumar-b3561b144" target="_blank">LinkedIn</a></p>
-      <p><i class="fa-solid fa-globe"></i> <a href="http://abhayde.it.com" target="_blank">abhayde.it.com</a></p>
-    </div>
-  </section>
+    <section id="contact">
+      <div class="container">
+        <h2 class="handwritten">Contact</h2>
+        <div class="contact-grid">
+          <p><i class="fa-solid fa-envelope"></i> kumarabhay.de@gmail.com</p>
+          <p><i class="fa-solid fa-phone"></i> +91 70197 51217</p>
+          <p><i class="fa-brands fa-github"></i> <a href="https://github.com/abhay-kum" target="_blank">github.com/abhay-kum</a></p>
+          <p><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/in/abhay-kumar-b3561b144" target="_blank">LinkedIn</a></p>
+          <p><i class="fa-solid fa-globe"></i> <a href="http://abhayde.it.com" target="_blank">abhayde.it.com</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <div class="container">
