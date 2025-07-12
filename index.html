@@ -1,169 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Abhay Kumar | Data Engineer</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Pacifico&display=swap" rel="stylesheet">
-  <style>body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Gloria Hallelujah', cursive;
-  background: white;
-  color: black;
-  line-height: 1.6;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhay Kumar - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light Slate 50 */
+            color: #334155; /* Slate 700 */
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0; /* Slate 200 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #64748b; /* Slate 500 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; /* Slate 600 */
+        }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 1.5rem;
-  text-align: center;
-}
+        /* Styles for the sliding projects carousel */
+        .projects-carousel-container {
+            display: flex;
+            overflow-x: hidden; /* Hide default scrollbar */
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+            scroll-behavior: smooth;
+            width: 100%;
+            position: relative;
+        }
 
-header {
-  padding: 2rem 1rem 1rem;
-}
+        .project-card-wrapper {
+            flex: 0 0 100%; /* Each card takes full width of the container */
+            scroll-snap-align: start;
+            padding: 0 1rem; /* Add some padding between cards */
+            box-sizing: border-box;
+        }
 
-.handwritten-title {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.8rem;
-  margin-bottom: 0.2rem;
-}
+        /* Adjust for larger screens to show multiple cards */
+        @media (min-width: 768px) {
+            .project-card-wrapper {
+                flex: 0 0 50%; /* Show 2 cards on medium screens */
+            }
+        }
+        @media (min-width: 1024px) {
+            .project-card-wrapper {
+                flex: 0 0 33.333%; /* Show 3 cards on large screens */
+            }
+        }
 
-.role {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(100, 116, 139, 0.7); /* Slate 500 with opacity */
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px; /* Full rounded */
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
 
-nav {
-  margin-top: 1rem;
-}
-
-nav a {
-  margin: 0 1rem;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-}
-
-.section {
-  padding: 2rem 1rem;
-}
-
-h2 {
-  font-family: 'Pacifico', cursive;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.job h3 {
-  margin: 0.5rem 0 0.2rem;
-}
-
-ul {
-  list-style-type: square;
-  padding-left: 1.5rem;
-}
-
-a {
-  color: black;
-  text-decoration: underline;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  border-top: 1px dashed #999;
-}
-
-@media (max-width: 768px) {
-  nav a {
-    display: block;
-    margin: 0.5rem 0;
-  }
-
-  .container {
-    padding: 1rem;
-  }
-
-  .handwritten-title {
-    font-size: 2rem;
-  }
-}
-</style>
+        .carousel-button:hover {
+            background-color: rgba(71, 85, 105, 0.9); /* Slate 600 with more opacity */
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="container">
-      <h1 class="handwritten-title">Abhay Kumar</h1>
-      <p class="role">Senior Data Engineer | 6+ Years Experience</p>
-      
-    </div>
-  </header>
+<body class="antialiased">
 
-  <main>
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>
-        I'm a Data Engineer with 6 years of experience in fintech and ecommerce. I build data pipelines to collect, process, and deliver insights using batch, streaming, and event-driven systems.
-      </p>
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600 rounded-lg p-2 hover:bg-indigo-50 transition duration-300">Abhay Kumar</a>
+            <ul class="flex space-x-6 items-center">
+                <li><a href="#home" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Home</a></li>
+                <li><a href="#about" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">About</a></li>
+                <li><a href="#skills" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Skills</a></li>
+                <li><a href="#experience" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Experience</a></li>
+                <li><a href="#projects" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Projects</a></li>
+                <li><a href="#education" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Education</a></li>
+                <li><a href="#certifications" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Certifications</a></li>
+                <li><a href="#awards" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Awards</a></li>
+                <li><a href="#hobbies" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Hobbies</a></li>
+                <li><a href="#contact" class="text-lg font-medium text-gray-700 hover:text-indigo-600 transition duration-300 rounded-lg p-2 hover:bg-gray-100">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="relative bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 md:py-32 flex flex-col items-center justify-center min-h-screen-75 overflow-hidden text-center">
+        <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('https://placehold.co/1920x1080/ffffff/000000?text=Background+Pattern'); background-size: cover; background-position: center;"></div>
+        <div class="container mx-auto z-10 px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-down">Hello, I'm <span class="text-yellow-300">Abhay Kumar</span>!</h1>
+            <p class="text-xl md:text-2xl mb-8 animate-fade-in-up">A passionate <span class="font-semibold">Data Engineer</span> building robust and scalable data solutions.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+                <a href="#projects" class="bg-white text-indigo-700 hover:bg-gray-100 px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300 ease-in-out inline-block">View My Work</a>
+                <a href="https://www.africau.edu/images/default/sample.pdf" download="Abhay_Kumar_Resume.pdf" class="bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition duration-300 ease-in-out inline-flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Download Resume
+                </a>
+            </div>
+            <!-- Social Links in Home Section -->
+            <div class="flex justify-center space-x-6 mt-8">
+                <a href="https://linkedin.com/in/abhay-kumar-b3561b144" target="_blank" class="text-white hover:text-yellow-300 transition duration-300" aria-label="LinkedIn">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://github.com/abhay-kum" target="_blank" class="text-white hover:text-yellow-300 transition duration-300" aria-label="GitHub">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.475.087.646-.207.646-.455 0-.224-.007-.827-.011-1.621-2.783.603-3.368-1.34-3.368-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.338-2.22-.253-4.555-1.116-4.555-4.949 0-1.092.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.436 9.436 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.025 2.747-1.025.546 1.379.202 2.398.099 2.65.64.7 1.028 1.596 1.028 2.688 0 3.841-2.339 4.69-4.566 4.942.359.31.678.921.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .249.17.549.65.454C21.137 20.211 24 16.454 24 12.017 24 6.484 19.522 2 14 2h-2z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="mailto:kumarabhay.de@gmail.com" class="text-white hover:text-yellow-300 transition duration-300" aria-label="Email">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H8a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section id="experience" class="section">
-      <h2>Experience</h2>
-
-      <div class="job">
-        <h3>IDFC FIRST Bank — Data Engineer-2</h3>
-        <p><em>Mar 2022 – Present</em></p>
-        <p>
-          Built pipelines using NiFi, PySpark, Hive. Stored data in multi-layered lake (staging → refined → raw). Automated workflows with Airflow, Bash, Jenkins.
-        </p>
-      </div>
-
-      <div class="job">
-        <h3>TextMercato — Data Engineer</h3>
-        <p><em>Nov 2020 – Feb 2022</em></p>
-        <p>
-          Scraped data from websites, PDFs, images. Used OCR and NLP to generate product catalogs for Amazon, Flipkart, Myntra.
-        </p>
-      </div>
-
-      <div class="job">
-        <h3>Greendeck — Data Engineer</h3>
-        <p><em>Mar 2019 – Oct 2020</em></p>
-        <p>
-          Created price and promotion monitoring pipelines for competitor analysis using FastAPI, MongoDB, Docker.
-        </p>
-      </div>
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-12">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <img src="https://placehold.co/400x400/a78bfa/ffffff?text=Your+Photo" alt="Your Photo" class="rounded-full shadow-xl w-64 h-64 md:w-80 md:h-80 object-cover mx-auto border-4 border-indigo-300">
+                </div>
+                <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">
+                    <p class="mb-4">
+                        Hi there! I'm <span class="font-semibold text-indigo-600">Abhay Kumar</span>, a highly detail-oriented and results-driven Data Engineer with 6+ years of expertise in architecting and delivering robust big data solutions for FinTech and E-commerce.
+                    </p>
+                    <p class="mb-4">
+                        My experience spans building scalable real-time and batch data pipelines with Spark, Kafka, NiFi, and Airflow on the Hadoop ecosystem, leveraging AWS cloud services like S3, EMR, Glue, and Lambda. I excel at handling diverse data sources for analytics, reporting, and ML initiatives, consistently driving business insights and leading successful projects.
+                    </p>
+                    <p>
+                        I believe in continuous learning and leveraging technology to solve real-world problems. Let's build something amazing together!
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <ul>
-        <li>DBT + Snowflake + Dagster data platform</li>
-        <li>Flipkart/Amazon price alerts via Telegram bot</li>
-      </ul>
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">My Skills</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Card 1: Languages & Scripting -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-200 group">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Languages & Scripting</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Python</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Bash</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">SQL</span>
+                    </div>
+                </div>
+                <!-- Skill Card 2: Big Data -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-200 group">
+                    <h3 class="2xl font-semibold text-gray-800 mb-4">Big Data</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">PySpark</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Hive</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Impala</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Apache Iceberg</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">HDFS</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Hadoop</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Sqoop</span>
+                    </div>
+                </div>
+                <!-- Skill Card 3: Data Tools -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-200 group">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Data Tools</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Apache NiFi</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Airflow</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Dreamio</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">DBT</span>
+                    </div>
+                </div>
+                <!-- Skill Card 4: Cloud & Infra -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-200 group">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Cloud & Infra</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">AWS</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">GCP</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Azure</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Docker</span>
+                    </div>
+                </div>
+                <!-- Skill Card 5: Web Scraping -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-200 group">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Web Scraping</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Scrapy</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">BeautifulSoup</span>
+                    </div>
+                </div>
+                <!-- Skill Card 6: Databases -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-200 group">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Databases</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">MongoDB</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Oracle</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">ElasticSearch</span>
+                    </div>
+                </div>
+                <!-- Skill Card 7: CICD/Workflow Tools/Version Control -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-200 group">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">CICD/Workflow Tools/Version Control</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Jenkins</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Control-M</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Crontab</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Github</span>
+                    </div>
+                </div>
+                <!-- Skill Card 8: GEN AI -->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out border border-gray-200 group">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">GEN AI</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">LLM (OpenAI, Gemini)</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">RAG</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Vector Database</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-indigo-100 group-hover:text-indigo-800 transition duration-300">Embedding</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <ul>
-        <li>Email: kumarabhay.de@gmail.com</li>
-        <li>Phone: +91 70197 51217</li>
-        <li>GitHub: <a href="https://github.com/abhay-kum">github.com/abhay-kum</a></li>
-        <li>LinkedIn: <a href="https://linkedin.com/in/abhay-kumar-b3561b144">linkedin.com/in/abhay-kumar</a></li>
-        <li>Website: <a href="http://abhayde.it.com">abhayde.it.com</a></li>
-      </ul>
-    </section>
-  </main>
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Experience</h2>
 
-  <footer>
-    <p>© 2025 Abhay Kumar</p>
-  </footer>
+            <div class="space-y-12">
+                <!-- Job 1: Data Engineer-2, IDFC FIRST BANK -->
+                <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Data Engineer-2, IDFC FIRST BANK – Bengaluru, India</h3>
+                    <p class="text-gray-600 text-lg mb-4">Mar 2022 – Present</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-3">
+                        <li>Architected and implemented a scalable, automated data ingestion framework capable of processing 1000+ tables, facilitating multi-stage data processing across staging, refined, and raw layers using Airflow for orchestration and Sqoop, Spark, and Hive scripts for efficient data transfer and transformation.</li>
+                        <li>Designed and implemented an automated, event-driven framework for internal-audit reporting, generating 75+ branch-level reports. This initiative reduced Turnaround Time (TAT) from 7 days to 1 day and eliminated manual intervention, significantly improving efficiency.</li>
+                        <li>Created 40+ user-friendly Impala scripts with variable inputs, enabling non-technical stakeholders to efficiently retrieve critical LEA/MHA reports without direct technical assistance.</li>
+                        <li>Developed and automated pipelines for extracting beneficiary information from multi-source account statements, streamlining data preparation for LEA/MHA reporting and reducing TAT by over 60% (from 1 day to 3-4 hours).</li>
+                        <li>Developed pipelines that efficiently collected crucial customer portfolio and onboarding data, including account numbers, loan distributions, NPA details, app scores, demographics, and transaction amounts, for RBI’s required monthly and quarterly reports.</li>
+                        <li><span class="font-semibold">Tech Stack:</span> Python, Pyspark, SQL, Apache-Airflow, Apache-NiFi, Sqoop, Hive, Impala, AWS, Jenkins, Git.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 2: Data Engineer, TextMercato -->
+                <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Data Engineer, TextMercato – Bengaluru, India</h3>
+                    <p class="text-gray-600 text-lg mb-4">Nov 2020 – Feb 2022</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-3">
+                        <li>Engineered & deployed a scalable data pipeline for efficient collection and processing of unstructured data (PDFs, images, Excel, websites).</li>
+                        <li>Leveraged advanced AI/ML techniques, including OCR (PaddlePaddle) and OpenAI-based paraphrasing models, for data transformation.</li>
+                        <li>Generated comprehensive product catalogs for major e-commerce platforms (Amazon, Flipkart, Myntra).</li>
+                        <li>Developed robust & scalable APIs using FastAPI to support data ingestion, processing, and retrieval.</li>
+                        <li><span class="font-semibold">Tech Stack:</span> Python, Scrapy, Azure, FastAPI, OCR (PaddlePaddle), OpenAI API, MongoDB.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 3: Data Engineer, Greendeck -->
+                <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Data Engineer, Greendeck – Indore, India</h3>
+                    <p class="text-gray-600 text-lg mb-4">Mar 2019 – Oct 2020</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-3">
+                        <li>Built competitor intelligence systems for e-commerce clients.</li>
+                        <li>Built a robust system for continuous, efficient data acquisition and storage through scraping more than 100+ e-commerce sites.</li>
+                        <li>Leveraged data snapshots and promotional newsletters to continuously monitor market pricing and promotional strategies.</li>
+                        <li>Used Dockerized microservices with FastAPI deployed on GCP.</li>
+                        <li><span class="font-semibold">Tech Stack:</span> Python, GCP, Microservices, Docker, ELK, Scrapy, FastAPI, MongoDB, Redis.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 relative">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">My Projects</h2>
+
+            <div class="projects-carousel-container" id="projects-carousel">
+                <!-- Project Card 1: Real-time Data Ingestion Pipeline -->
+                <div class="project-card-wrapper">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Data+Pipeline+1" alt="Real-time Data Ingestion Pipeline" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Real-time Data Ingestion Pipeline</h3>
+                            <p class="text-gray-600 mb-4">Designed and implemented a real-time data ingestion pipeline using Apache Kafka and Spark Streaming to process high-volume sensor data, enabling immediate analytics and anomaly detection.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-2.5 py-0.5 rounded-full">Kafka</span>
+                                <span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded-full">Spark Streaming</span>
+                                <span class="bg-red-100 text-red-800 text-sm font-medium px-2.5 py-0.5 rounded-full">AWS Kinesis</span>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-full">S3</span>
+                            </div>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold inline-flex items-center group">
+                                View Project
+                                <svg class="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 2: Data Lakehouse Implementation -->
+                <div class="project-card-wrapper">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/600x400/818cf8/ffffff?text=Data+Pipeline+2" alt="Data Lakehouse Implementation" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Data Lakehouse Implementation</h3>
+                            <p class="text-gray-600 mb-4">Built a scalable data lakehouse architecture on AWS using S3, Glue, and Athena, facilitating efficient storage, processing, and querying of structured and unstructured data.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-emerald-100 text-emerald-800 text-sm font-medium px-2.5 py-0.5 rounded-full">AWS S3</span>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-full">AWS Glue</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-2.5 py-0.5 rounded-full">AWS Athena</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-2.5 py-0.5 rounded-full">Delta Lake</span>
+                            </div>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold inline-flex items-center group">
+                                View Project
+                                <svg class="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 3: ETL Process Optimization -->
+                <div class="project-card-wrapper">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/600x400/c4b5fd/ffffff?text=Data+Pipeline+3" alt="ETL Process Optimization" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">ETL Process Optimization</h3>
+                            <p class="text-gray-600 mb-4">Optimized existing ETL processes by refactoring legacy code, introducing parallel processing, and implementing data validation checks, resulting in a 40% reduction in processing time.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-pink-100 text-pink-800 text-sm font-medium px-2.5 py-0.5 rounded-full">Apache Airflow</span>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-full">PostgreSQL</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-2.5 py-0.5 rounded-full">DBT</span>
+                            </div>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold inline-flex items-center group">
+                                View Project
+                                <svg class="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more project cards here if needed -->
+            </div>
+
+            <!-- Carousel Navigation Buttons -->
+            <button id="prev-project" class="carousel-button carousel-button-left">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button id="next-project" class="carousel-button carousel-button-right">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Education</h2>
+            <div class="space-y-8 max-w-3xl mx-auto">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">PG Diploma in Data Science, IIIT Bengaluru</h3>
+                    <p class="text-gray-600 mb-2">Jan 2022 – Feb 2023</p>
+                    <p class="text-gray-700">CGPA: 3.49/4.0</p>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Coursework: Machine Learning, Data Engineering</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">B.Tech in Computer Science Engineering, IIIT Dharwad</h3>
+                    <p class="text-gray-600 mb-2">Aug 2015 – Apr 2019</p>
+                    <p class="text-gray-700">CGPA: 8.2/10.0</p>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Coursework: Operating System, DSA, Software Engineering, Data Science</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Certifications</h2>
+            <div class="space-y-8 max-w-3xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">The Complete DBT (Data Build Tool) Udemy Bootcamp: Zero to Hero</h3>
+                    <p class="text-gray-600">June, 2025</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">Introduction to Data Science in Python - Coursera</h3>
+                    <p class="text-gray-600">June, 2018</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">Applied Plotting, Charting & Data Representation in Python - Coursera</h3>
+                    <p class="text-gray-600">June, 2018</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Awards</h2>
+            <div class="space-y-8 max-w-3xl mx-auto">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">Award of Excellence in Data Platform Migration</h3>
+                    <p class="text-gray-700">For leading the successful Cloudera migration at IDFC FIRST Bank.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Hobbies & Interests</h2>
+            <div class="max-w-4xl mx-auto text-lg leading-relaxed text-gray-700 text-center">
+                <p class="mb-8">
+                    In my spare time, I enjoy engaging in activities that keep me active and mentally stimulated. Here are some of my passions:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/400x300/a78bfa/ffffff?text=Cricket+Action" alt="Cricket" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-xl font-semibold">Cricket</p>
+                        </div>
+                    </div>
+                    <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/400x300/818cf8/ffffff?text=Chess+Board" alt="Chess" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-xl font-semibold">Chess</p>
+                        </div>
+                    </div>
+                    <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/400x300/c4b5fd/ffffff?text=Trekking+View" alt="Trekking" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-xl font-semibold">Trekking</p>
+                        </div>
+                    </div>
+                    <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/400x300/a78bfa/ffffff?text=Reading+Books" alt="Reading" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-xl font-semibold">Reading</p>
+                        </div>
+                    </div>
+                    <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/400x300/818cf8/ffffff?text=Photography+Camera" alt="Photography" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-xl font-semibold">Photography</p>
+                        </div>
+                    </div>
+                    <div class="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://placehold.co/400x300/c4b5fd/ffffff?text=Cooking+Food" alt="Cooking" class="w-full h-48 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-xl font-semibold">Cooking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Get in Touch</h2>
+            <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg shadow-lg border border-gray-200">
+                <p class="text-lg text-gray-700 text-center mb-8">
+                    Have a project in mind or just want to say hello? Feel free to reach out!
+                </p>
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-800 text-sm font-medium mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200" placeholder="John Doe" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-800 text-sm font-medium mb-2">Your Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200" placeholder="john.doe@example.com" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-800 text-sm font-medium mb-2">Message</label>
+                        <textarea id="message" name="message" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200" placeholder="Hi Abhay, I'd like to discuss a project..." required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-md hover:bg-indigo-700 transform hover:scale-105 transition duration-300 ease-in-out">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto text-center px-4">
+            <p>&copy; 2025 Abhay Kumar. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="https://linkedin.com/in/abhay-kumar-b3561b144" target="_blank" class="text-gray-400 hover:text-white transition duration-300" aria-label="LinkedIn">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://github.com/abhay-kum" target="_blank" class="text-gray-400 hover:text-white transition duration-300" aria-label="GitHub">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.475.087.646-.207.646-.455 0-.224-.007-.827-.011-1.621-2.783.603-3.368-1.34-3.368-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.338-2.22-.253-4.555-1.116-4.555-4.949 0-1.092.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.436 9.436 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.025 2.747-1.025.546 1.379.202 2.398.099 2.65.64.7 1.028 1.596 1.028 2.688 0 3.841-2.339 4.69-4.566 4.942.359.31.678.921.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .249.17.549.65.454C21.137 20.211 24 16.454 24 12.017 24 6.484 19.522 2 14 2h-2z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="mailto:kumarabhay.de@gmail.com" class="text-gray-400 hover:text-white transition duration-300" aria-label="Email">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H8a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                </a>
+                <!-- Phone number is generally not put directly on public websites for privacy, but if needed: -->
+                <!-- <a href="tel:+917019751217" class="text-gray-400 hover:text-white transition duration-300" aria-label="Phone">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                </a> -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Project Carousel Logic
+        const projectsCarousel = document.getElementById('projects-carousel');
+        const prevProjectButton = document.getElementById('prev-project');
+        const nextProjectButton = document.getElementById('next-project');
+
+        if (projectsCarousel && prevProjectButton && nextProjectButton) {
+            nextProjectButton.addEventListener('click', () => {
+                // Calculate the width of one card wrapper, including padding
+                const cardWidth = projectsCarousel.querySelector('.project-card-wrapper').offsetWidth;
+                projectsCarousel.scrollBy({
+                    left: cardWidth,
+                    behavior: 'smooth'
+                });
+            });
+
+            prevProjectButton.addEventListener('click', () => {
+                // Calculate the width of one card wrapper, including padding
+                const cardWidth = projectsCarousel.querySelector('.project-card-wrapper').offsetWidth;
+                projectsCarousel.scrollBy({
+                    left: -cardWidth,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Optional: Hide/show buttons based on scroll position (more advanced, not implemented for brevity)
+            // You can add Intersection Observer or scroll event listeners to manage button visibility
+            // based on whether there's more content to scroll to the left/right.
+        }
+    </script>
 </body>
 </html>
